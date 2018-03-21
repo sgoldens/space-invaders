@@ -1,0 +1,9 @@
+body {
+  background: #000000;
+}
+
+#game-canvas {
+  height: 400px;
+  width: 530px;
+  border: 2px solid green;
+}
