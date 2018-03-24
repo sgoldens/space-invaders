@@ -34,6 +34,17 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
       return invaders;
     };
 
+    var loadSound = function(url, callback) {
+        var loaded = function() {
+            callback(sound);
+            sound.removeEventListener('canplaythrough', loaded);
+        }
+
+        var sound = new Audio(url);
+        sound.addEventListener('canplaythrough', loaded);
+        sound.load();
+    }
+
     self.entities = createInvaders(self).concat(new Player(self, self.gameSize));
     console.log(self.entities)
 
@@ -56,10 +67,18 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
       };
     };
 
+    var self = this;
+
     var tick = function() {
-      update();
-      draw();
-      self.frameID = requestAnimationFrame(tick);
+      loadSound('sounds/pewpew.wav', function(shootSound) {
+        self.shootSound = shootSound;
+        self.playerAlive = true;
+        self.atleastOneInvaderAlive = true;
+
+        update();
+        draw();
+        self.frameID = requestAnimationFrame(tick);
+      });
     };
 
     var colliding = function(e1, e2) {

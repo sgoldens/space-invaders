@@ -29,6 +29,8 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
           y: -6
         });
         this.game.addEntity(bullet);
+        this.game.shootSound.load();
+        this.game.shootSound.play();
         timestamp = new Date();
     }
     this.update = function() {
