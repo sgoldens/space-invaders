@@ -12,7 +12,7 @@ define("Invader", ["Bullet"], function(Bullet) {
     img.src = "images/green-invader.svg";
     this.image = img;
     this.update = function() {
-      if (this.patrolX < 0 || this.patrolX > game.gameSize.x / 10) {
+      if (this.patrolX < 0 || this.patrolX > game.gameSize.x / 5.2) {
         this.speedX = -this.speedX;
       }
       this.location.x += this.speedX;
