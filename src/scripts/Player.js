@@ -4,20 +4,23 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
     this.game = game;
     this.lives = 3;
     this.size = {
-      x: 30,
-      y: 15
+      x: 50,
+      y: 50
     };
     this.location = {
       x: gameSize.x / 2, 
       y: gameSize.y - this.size.x
     };
-    this.update = function() {
-      if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT)) {
-        this.location.x -= 10;
-      } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT)) {
-        this.location.x += 10;
-      }
-      if (this.keyboarder.isDown(this.keyboarder.KEYS.SPACE)) {
+    var img = new Image();
+    img.src = "images/hero.svg";
+    this.image = img;
+    var timestamp = new Date();
+    var delay = 250;
+    var timeDistance = delay + 1;
+    this.addBulletDebounced = function() {
+        var now = new Date();
+        timeDistance = (now.getTime() - timestamp.getTime());
+        if(timeDistance <= delay) return;
         var bullet = new Bullet({
           x: this.location.x,
           y: this.location.y - this.size.y / 2
@@ -26,6 +29,17 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
           y: -6
         });
         this.game.addEntity(bullet);
+        timestamp = new Date();
+    }
+    this.update = function() {
+      if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT)) {
+        this.location.x -= 10;
+      } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT)) {
+        this.location.x += 10;
+      }
+      if (this.keyboarder.isDown(this.keyboarder.KEYS.SPACE)) {
+
+        this.addBulletDebounced();
       }
     }
   };

@@ -21,8 +21,14 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" type="text/css" href="../src/styles/style.css">
-  <body>
-    <canvas height="800" width="1200" id="game-canvas"></canvas>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+ <body>
     <script data-main="../src/scripts/main" src="../src/scripts/require.js"></script>
+    <button id="winner" style="display: none;" onclick="location.reload(true)">Play again?</button>
+    <button id="replay" style="display: none;" onclick="location.reload(true)">Play again?</button>
+    <div>      
+      <canvas height="800" width="1200" id="game-canvas"></canvas>
+      <div id="icons-credit">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+    </div>
   </body>
 </html>

@@ -1,8 +1,9 @@
 define("Bullet", function () {
   return function Bullet(location, speed) {
+    this.className = "bullet"
     this.size = {
       x: 3,
-      y: 3
+      y: 10 
     }
     this.location = location;
     this.speed = speed;

@@ -1,9 +1,48 @@
 body {
-  background: #ffffff;
+  background: #fff;
 }
 
 #game-canvas {
-  height: 400px;
-  width: 530px;
   border: 2px solid green;
+  margin: 0px auto;
+  display: block;
+}
+
+#icons-credit {
+  font-size: 12px;
+  color: darkgrey;
+  position: relative;
+  margin-left: 190px;
+}
+
+#replay {
+  display: none;
+  font-size: 32px;
+  background-color: #67e0ef;
+  box-shadow: 0 4px #03A9F4;
+  height: 63px;
+  width: 194px;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #000;
+  margin-top: 10px;
+  position: absolute;
+  left: 32%;
+  top: 52%;
+}
+
+#winner {
+  display: none;
+  font-size: 32px;
+  background-color: #67e0ef;
+  box-shadow: 0 4px #03A9F4;
+  height: 63px;
+  width: 194px;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #000;
+  margin-top: 10px;
+  position: absolute;
+  left: 32%;
+  top: 37%;  
 }

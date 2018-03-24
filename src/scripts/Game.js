@@ -23,9 +23,9 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
 
     var createInvaders = function(game) {
       var invaders = [];
-      for (var i = 0; i < 24; i++) {
-          var x = 30 + (i % 8) * 30;
-          var y = 30 + (i % 3) * 30;
+      for (var i = 0; i < 77; i++) {
+          var x = 35 + (i % 11) * 90;
+          var y = 35 + (i % 7) * 60;
           invaders.push(new Invader(game, {
               x: x,
               y: y
@@ -44,7 +44,15 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     var draw = function() {
       ctx.clearRect(0, 0, self.gameSize.x, self.gameSize.y);
       for (var i = 0; i < self.entities.length; i++) {
+        if (self.entities[i].image) {
+            ctx.drawImage(self.entities[i].image, 
+            self.entities[i].location.x - self.entities[i].size.x / 2, 
+            self.entities[i].location.y - self.entities[i].size.y / 2, 
+            self.entities[i].size.x, 
+            self.entities[i].size.y);
+        } else {
         drawRect(ctx, self.entities[i]);
+        };
       };
     };
 
@@ -54,19 +62,25 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
       self.frameID = requestAnimationFrame(tick);
     };
 
-    var colliding = function(b1, b2) {
-        return !(b1 === b2 || b1.location.x + b1.size.x / 2 < b2.location.x - b2.size.x / 2 || b1.location.y + b1.size.y / 2 < b2.location.y - b2.size.y / 2 || b1.location.x - b1.size.x / 2 > b2.location.x + b2.size.x / 2 || b1.location.y - b1.size.y / 2 > b2.location.y + b2.size.y / 2);
+    var colliding = function(e1, e2) {
+        return !(e1 === e2 || e1.location.x + e1.size.x / 2 < e2.location.x - e2.size.x / 2 || e1.location.y + e1.size.y / 2 < e2.location.y - e2.size.y / 2 || e1.location.x - e1.size.x / 2 > e2.location.x + e2.size.x / 2 || e1.location.y - e1.size.y / 2 > e2.location.y + e2.size.y / 2);
     };
 
     var gameOver = function() {
       self.gameOver = true;
+      document.getElementById("replay").style.display = 'block';
+    }
+
+    var winner = function() {
+      self.gameOver = true;
+      document.getElementById("winner").style.display = 'block';
     }
 
     var update = function() {
       if (!self.playerAlive) {
         setTimeout(function(game) {
             // game.stopGame();
-            // gameOver();
+            gameOver();
         }, 10, this); 
       } else if (!self.atLeastOneInvaderAlive) {
         setTimeout(function(game) {
