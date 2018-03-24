@@ -72,8 +72,6 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     var tick = function() {
       loadSound('sounds/pewpew.wav', function(shootSound) {
         self.shootSound = shootSound;
-        self.playerAlive = true;
-        self.atleastOneInvaderAlive = true;
 
         update();
         draw();
