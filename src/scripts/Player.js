@@ -1,7 +1,7 @@
-define("Player", ["Bullet"], function (Bullet) {
-  return function Player(game, gameSize, Keyboarder) {
+define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
+  return function Player(game, gameSize) {
+    this.keyboarder = new Keyboarder();
     this.game = game;
-    this.keyboarder = Keyboarder;
     this.lives = 3;
     this.size = {
       x: 30,
@@ -13,9 +13,9 @@ define("Player", ["Bullet"], function (Bullet) {
     };
     this.update = function() {
       if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT)) {
-        this.location.x -= 2;
+        this.location.x -= 10;
       } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT)) {
-        this.location.x += 2;
+        this.location.x += 10;
       }
       if (this.keyboarder.isDown(this.keyboarder.KEYS.SPACE)) {
         var bullet = new Bullet({

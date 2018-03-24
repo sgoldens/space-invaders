@@ -1,11 +1,7 @@
-define("main", 
-  ["Game",
-  "Keyboarder",
-  "Player"], function(Game, Keyboarder, Player) {
-    var spaceInvaders = new Game("game-canvas");
-    var keyboarder = new Keyboarder();
-    var player = new Player(spaceInvaders, spaceInvaders.gameSize, keyboarder);
+// Please note: This project is largely an extension and reworking of https://github.com/arvindr21/spaceinvaders-game/blob/master/game.js
 
-  	spaceInvaders.entities.push(player);
-    console.log(player)
+define("main", 
+  ["Game" ], function(Game) {
+    var spaceInvaders = new Game("game-canvas");
+    console.log(spaceInvaders)
 });
