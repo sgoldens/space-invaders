@@ -27,7 +27,8 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
         }, {
           x: 0,
           y: -6
-        });
+        },
+        0);
         this.game.addEntity(bullet);
         this.game.shootSound.load();
         this.game.shootSound.play();
@@ -35,9 +36,13 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
     }
     this.update = function() {
       if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT)) {
-        this.location.x -= 10;
+        if (this.location.x >= this.size.x)   {
+          this.location.x -= 10;
+        }
       } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT)) {
-        this.location.x += 10;
+        if (this.location.x <= gameSize.x - this.size.x) {
+          this.location.x += 10;
+        }
       }
       if (this.keyboarder.isDown(this.keyboarder.KEYS.SPACE)) {
 

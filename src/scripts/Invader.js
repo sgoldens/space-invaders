@@ -17,14 +17,15 @@ define("Invader", ["Bullet"], function(Bullet) {
       }
       this.location.x += this.speedX;
       this.patrolX += this.speedX;
-      if (Math.random() > 0.99 && !this.game.invadersBelow(this)) {
+      if (Math.random() > 0.996 && !this.game.invadersBelow(this)) {
         var bullet = new Bullet({
           x: this.location.x,
           y: this.location.y + this.size.x / 2 + 10
         }, {
           x: 0,
           y: 2          
-        });
+        },
+        1);
         this.game.addEntity(bullet);
       }
     }

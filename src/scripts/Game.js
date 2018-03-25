@@ -2,6 +2,7 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
   var canvasID = document.getElementById("game-canvas");
   var ctx = canvasID.getContext("2d");
   return function Game() {
+    canvasID.style.backgroundColor = '#000000';
     this.frameID = null;
     this.gameOver = false;
     this.gameSize = {
@@ -23,9 +24,9 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
 
     var createInvaders = function(game) {
       var invaders = [];
-      for (var i = 0; i < 77; i++) {
-          var x = 35 + (i % 11) * 90;
-          var y = 35 + (i % 7) * 60;
+      for (var i = 0; i < 40; i++) {
+          var x = 35 + (i % 8) * 90;
+          var y = 35 + (i % 5) * 60;
           invaders.push(new Invader(game, {
               x: x,
               y: y
@@ -46,7 +47,6 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     }
 
     self.entities = createInvaders(self).concat(new Player(self, self.gameSize));
-    console.log(self.entities)
 
     var drawRect = function(ctx, entity) {
       ctx.fillRect(entity.location.x - entity.size.x / 2, entity.location.y - entity.size.y / 2, entity.size.x, entity.size.y);
@@ -61,8 +61,8 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
             self.entities[i].location.y - self.entities[i].size.y / 2, 
             self.entities[i].size.x, 
             self.entities[i].size.y);
-        } else {
-        drawRect(ctx, self.entities[i]);
+        // } else {
+        // drawRect(ctx, self.entities[i]);
         };
       };
     };
@@ -102,7 +102,7 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
       } else if (!self.atLeastOneInvaderAlive) {
         setTimeout(function(game) {
             // game.stopGame();
-            // gameOver();
+            winner();
         }, 10, self); 
       } else {
         var entities = self.entities;
