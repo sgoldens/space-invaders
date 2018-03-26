@@ -1,4 +1,4 @@
-define("Game", ["Invader", "Player"], function(Invader, Player) {
+define("Game", ["Base", "Bullet", "Invader", "Player"], function(Base, Bullet, Invader, Player) {
   var canvasID = document.getElementById("game-canvas");
   var ctx = canvasID.getContext("2d");
   return function Game() {
@@ -20,6 +20,19 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     this.gameStarted = false;
 
     var self = this;
+
+    var createBases = function(game) {
+      var bases = [];
+      for (var i = 0; i < 4; i++) {
+        var x = 50 + i * 250
+        var y = 500
+        bases.push(new Base(game, {
+          x: x,
+          y: y,
+        }));
+      };
+      return bases;
+    }
 
     var createInvaders = function(game) {
       var invaders = [];
@@ -50,7 +63,7 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
         sound.load();
     }
 
-    self.entities = createInvaders(self).concat(new Player(self, self.gameSize));
+    self.entities = createInvaders(self).concat(createBases(self)).concat(new Player(self, self.gameSize));
 
     var draw = function() {
       ctx.clearRect(0, 0, self.gameSize.x, self.gameSize.y);
