@@ -48,8 +48,8 @@ html, body {
 
 #score {
   position: relative;
-  margin: auto 50%;
-  width: 100%;
+  left: 50%;
+  width: 30%;
   color: green;
   font-family: monospace;
   font-size: 36px;
