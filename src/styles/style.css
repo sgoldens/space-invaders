@@ -12,7 +12,6 @@ html, body {
 }
 
 #game-canvas {
-  border: 5px solid green;
   margin: 0px auto;
   display: block;
 }
