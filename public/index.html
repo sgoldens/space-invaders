@@ -23,7 +23,11 @@
   <link rel="stylesheet" type="text/css" href="../src/styles/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  <body>
+    <div id="splash-screen">SPACE INVADERS</div>
+    <div id="info">(Game is best viewed on a desktop/laptop at 675x900 resolution or larger)</div>
+    <div id="controls">LEFT/RIGHT arrow keys to move, SPACEBAR to shoot</div>
     <script data-main="../src/scripts/main" src="../src/scripts/require.js"></script>
+    <button id="start-button" style="display: block;">START</button>
     <button id="winner" style="display: none;" onclick="location.reload(true)">Play again?</button>
     <button id="replay" style="display: none;" onclick="location.reload(true)">Play again?</button>
     <div id="container">

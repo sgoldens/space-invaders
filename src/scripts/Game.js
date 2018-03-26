@@ -17,6 +17,8 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     }
     this.totalInvaders = 40;
     this.invadersAlive = 0;
+    this.gameStarted = false;
+
     var self = this;
 
     var createInvaders = function(game) {
@@ -168,7 +170,16 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
       }    
     };
 
+    var startGame = function() {
+      document.getElementById("start-button").style.display = 'none';
+      document.getElementById("splash-screen").style.display = 'none';
+      document.getElementById("info").style.display = 'none';
+      document.getElementById("controls").style.display = 'none';
+      tick();
+    }
 
-    tick();
+    var startButton = document.getElementById("start-button")
+    startButton.onclick = function() { startGame(); }
+
   };
 });
