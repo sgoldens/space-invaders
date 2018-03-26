@@ -15,22 +15,23 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     this.addEntity = function(entity) {
       this.entities.push(entity);
     }
-    this.invadersBelow = function(invader) {
-        return this.entities.filter(function(e) {
-            return e instanceof Invader && e.location.y > invader.location.y && e.location.x - invader.location.x < invader.size.x;
-        }).length > 0;
-    }
     var self = this;
 
     var createInvaders = function(game) {
       var invaders = [];
-      for (var i = 0; i < 40; i++) {
-          var x = 35 + (i % 8) * 90;
-          var y = 35 + (i % 5) * 60;
-          invaders.push(new Invader(game, {
-              x: x,
-              y: y
-          }));
+      var columns = 8;
+      var rows = 5;
+      var total = columns * rows;
+      self.totalInvaders = total;
+      for (var i = 0; i < total; i++) {
+        var x = 35 + (i % columns) * 90;
+        var y = 35 + (i % rows) * 60;
+        invaders.push(new Invader(game, {
+          x: x,
+          y: y,
+          column: i % columns,
+          row: Math.floor(i / columns)
+        }));
       };
       return invaders;
     };
@@ -80,7 +81,14 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     };
 
     var colliding = function(e1, e2) {
-        return !(e1 === e2 || e1.location.x + e1.size.x / 2 < e2.location.x - e2.size.x / 2 || e1.location.y + e1.size.y / 2 < e2.location.y - e2.size.y / 2 || e1.location.x - e1.size.x / 2 > e2.location.x + e2.size.x / 2 || e1.location.y - e1.size.y / 2 > e2.location.y + e2.size.y / 2);
+        return !(
+          e1 === e2 || 
+          e1.location.x + e1.size.x / 2 < e2.location.x - e2.size.x / 2 || 
+          e1.location.y + e1.size.y / 2 < e2.location.y - e2.size.y / 2 || 
+          e1.location.x - e1.size.x / 2 > e2.location.x + e2.size.x / 2 || 
+          e1.location.y - e1.size.y / 2 > e2.location.y + e2.size.y / 2 || 
+          (e1.invaderOrNot === e2.invaderOrNot)
+        );
     };
 
     var gameOver = function() {
@@ -106,6 +114,13 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
         }, 10, self); 
       } else {
         var entities = self.entities;
+        var invadersAlive = []
+        entities.filter(function(e) {
+          if (e instanceof Invader) {
+            invadersAlive.push(e);
+          }
+        })
+        document.getElementById("score").innerHTML = ((self.totalInvaders % invadersAlive.length) * 2500);
 
         var notCollidingWithAnything = function(e1) {
           return entities.filter(function(e2) {

@@ -6,6 +6,7 @@ define("Invader", ["Bullet"], function(Bullet) {
       y: 50
     };
     this.location = location;
+    this.invaderOrNot = true;
     this.patrolX = 0;
     this.speedX = 2;
     var img = new Image();
@@ -17,7 +18,7 @@ define("Invader", ["Bullet"], function(Bullet) {
       }
       this.location.x += this.speedX;
       this.patrolX += this.speedX;
-      if (Math.random() > 0.996 && !this.game.invadersBelow(this)) {
+      if (Math.random() > 0.999) {
         var bullet = new Bullet({
           x: this.location.x,
           y: this.location.y + this.size.x / 2 + 10
@@ -25,7 +26,7 @@ define("Invader", ["Bullet"], function(Bullet) {
           x: 0,
           y: 2          
         },
-        1);
+        true);
         this.game.addEntity(bullet);
       }
     }

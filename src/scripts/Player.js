@@ -11,6 +11,7 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
       x: gameSize.x / 2, 
       y: gameSize.y - this.size.x
     };
+    this.invaderOrNot = false;
     var img = new Image();
     img.src = "images/hero.svg";
     this.image = img;
@@ -28,7 +29,7 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
           x: 0,
           y: -6
         },
-        0);
+        false);
         this.game.addEntity(bullet);
         this.game.shootSound.load();
         this.game.shootSound.play();

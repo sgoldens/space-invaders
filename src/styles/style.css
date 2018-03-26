@@ -29,7 +29,7 @@ html, body {
   cursor: pointer;
   color: #000;
   position: absolute;
-  margin: 20% 42%
+  margin: 24% 46%;
 }
 
 #winner {
@@ -43,5 +43,14 @@ html, body {
   cursor: pointer;
   color: #000;
   position: absolute;
-  margin: 20% 42%
+  margin: 24% 46%;
+}
+
+#score {
+  position: relative;
+  margin: auto 50%;
+  width: 100%;
+  color: green;
+  font-family: monospace;
+  font-size: 36px;
 }
