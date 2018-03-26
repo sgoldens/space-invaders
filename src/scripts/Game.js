@@ -52,10 +52,6 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
 
     self.entities = createInvaders(self).concat(new Player(self, self.gameSize));
 
-    var drawRect = function(ctx, entity) {
-      ctx.fillRect(entity.location.x - entity.size.x / 2, entity.location.y - entity.size.y / 2, entity.size.x, entity.size.y);
-    }
-
     var draw = function() {
       ctx.clearRect(0, 0, self.gameSize.x, self.gameSize.y);
       for (var i = 0; i < self.entities.length; i++) {
@@ -65,8 +61,6 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
             self.entities[i].location.y - self.entities[i].size.y / 2, 
             self.entities[i].size.x, 
             self.entities[i].size.y);
-        // } else {
-        // drawRect(ctx, self.entities[i]);
         };
       };
     };
