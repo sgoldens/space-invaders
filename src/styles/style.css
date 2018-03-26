@@ -5,6 +5,12 @@ html, body {
   background: #fff;
 }
 
+#container {
+  border: 5px green solid;
+  background: black;
+  margin: auto -1px;
+}
+
 #game-canvas {
   border: 5px solid green;
   margin: 0px auto;
@@ -29,7 +35,7 @@ html, body {
   cursor: pointer;
   color: #000;
   position: absolute;
-  margin: 36% 41%;
+  margin: 23% 42%;
 }
 
 #winner {
@@ -43,14 +49,15 @@ html, body {
   cursor: pointer;
   color: #000;
   position: absolute;
-  margin: 36% 41%;
+  margin: 23% 42%;
 }
 
 #score {
   position: relative;
-  left: 50%;
+  left: 35.5%;
   width: 30%;
   color: green;
   font-family: monospace;
   font-size: 36px;
+  text-align: center; 
 }

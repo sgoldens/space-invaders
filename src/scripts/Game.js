@@ -15,6 +15,8 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
     this.addEntity = function(entity) {
       this.entities.push(entity);
     }
+    this.totalInvaders = 40;
+    this.invadersAlive = 0;
     var self = this;
 
     var createInvaders = function(game) {
@@ -22,7 +24,6 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
       var columns = 8;
       var rows = 5;
       var total = columns * rows;
-      self.totalInvaders = total;
       for (var i = 0; i < total; i++) {
         var x = 35 + (i % columns) * 90;
         var y = 35 + (i % rows) * 60;
@@ -113,14 +114,21 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
             winner();
         }, 10, self); 
       } else {
+        
         var entities = self.entities;
-        var invadersAlive = []
-        entities.filter(function(e) {
-          if (e instanceof Invader) {
-            invadersAlive.push(e);
-          }
-        })
-        document.getElementById("score").innerHTML = ((self.totalInvaders % invadersAlive.length) * 2500);
+
+        var invadersLeftAlive = function() {
+          self.invadersAlive = 0
+          self.entities.filter(function(e) {
+            if (e instanceof Invader) {
+              self.invadersAlive += 1;
+            }
+          })
+        }
+        
+        invadersLeftAlive();
+        
+        document.getElementById("score").innerHTML = ((self.totalInvaders - self.invadersAlive) * 2500);
 
         var notCollidingWithAnything = function(e1) {
           return entities.filter(function(e2) {
