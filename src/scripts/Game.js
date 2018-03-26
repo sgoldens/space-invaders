@@ -65,8 +65,6 @@ define("Game", ["Invader", "Player"], function(Invader, Player) {
       };
     };
 
-    var self = this;
-
     var tick = function() {
       loadSound('sounds/pewpew.wav', function(shootSound) {
         self.shootSound = shootSound;
