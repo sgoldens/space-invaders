@@ -15,6 +15,7 @@ define("Invader", ["Bullet"], function(Bullet) {
     this.update = function() {
       if (this.patrolX < 0 || this.patrolX > game.gameSize.x / 5.2) {
         this.speedX = -this.speedX;
+        this.location.y += 37.5;
       }
       this.location.x += this.speedX;
       this.patrolX += this.speedX;
