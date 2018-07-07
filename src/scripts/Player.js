@@ -35,7 +35,22 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
         this.game.shootSound.play();
         timestamp = new Date();
     }
+    this.moveTouch = function(event) {
+        var x = event.touches[0].clientX;
+        var y = event.touches[0].clientY;
+        if ((x < this.location.x) && (this.location.x >= this.size.x)) {
+          this.location.x -= 10
+        } else if ((x > this.location.x) && (this.location.x <= gameSize.x - this.size.x)) {
+          this.location.x += 10
+        }
+    }
     this.update = function() {
+      that = this
+      window.addEventListener('touchmove', function(e) {
+        that.moveTouch(e)
+        that.addBulletDebounced();
+      })
+
       if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT)) {
         if (this.location.x >= this.size.x)   {
           this.location.x -= 10;
@@ -50,5 +65,5 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
         this.addBulletDebounced();
       }
     }
-  };
-});
+  }
+})
