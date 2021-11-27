@@ -19,7 +19,7 @@ define("Invader", ["Bullet"], function(Bullet) {
       }
       this.location.x += this.speedX;
       this.patrolX += this.speedX;
-      if (Math.random() > 0.9985) {
+      if (Math.random() > 0.99875) {
         var bullet = new Bullet({
           x: this.location.x,
           y: this.location.y + this.size.x / 2 + 10

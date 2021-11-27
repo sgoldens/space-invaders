@@ -53,16 +53,16 @@ define("Game", ["Base", "Bullet", "Invader", "Player"], function(Base, Bullet, I
       return invaders;
     };
 
-    var loadSound = function(url, callback) {
-        var loaded = function() {
-            callback(sound);
-            sound.removeEventListener('canplaythrough', loaded);
-        }
+    // var loadSound = function(url, callback) {
+    //     var loaded = function() {
+    //         callback(sound);
+    //         sound.removeEventListener('canplaythrough', loaded);
+    //     }
 
-        var sound = new Audio(url);
-        sound.addEventListener('canplaythrough', loaded);
-        sound.load();
-    }
+    //     var sound = new Audio(url);
+    //     sound.addEventListener('canplaythrough', loaded);
+    //     sound.load();
+    // }
 
     self.entities = createInvaders(self).concat(createBases(self)).concat(new Player(self, self.gameSize));
 
@@ -86,13 +86,13 @@ define("Game", ["Base", "Bullet", "Invader", "Player"], function(Base, Bullet, I
     };
 
     var tick = function() {
-      loadSound('sounds/pewpew.wav', function(shootSound) {
-        self.shootSound = shootSound;
+      // loadSound('sounds/pewpew.wav', function(shootSound) {
+        // self.shootSound = shootSound;
 
         update();
         draw();
         self.frameID = requestAnimationFrame(tick);
-      });
+      // });
     };
 
     var colliding = function(e1, e2) {

@@ -16,7 +16,7 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
     img.src = "images/hero.svg";
     this.image = img;
     var timestamp = new Date();
-    var delay = 250;
+    var delay = 335;
     var timeDistance = delay + 1;
     this.addBulletDebounced = function() {
         var now = new Date();
@@ -31,8 +31,8 @@ define("Player", ["Bullet", "Keyboarder"], function (Bullet, Keyboarder) {
         },
         false);
         this.game.addEntity(bullet);
-        this.game.shootSound.load();
-        this.game.shootSound.play();
+        // this.game.shootSound.load();
+        // this.game.shootSound.play();
         timestamp = new Date();
     }
     this.moveTouch = function(event) {
